@@ -17,7 +17,7 @@ threshold = 30;
 x0 = [distance, 0]; %parameters is from current rig
 
 %% two bonds
-lb = [5000,-pi/4]; ub=[10000,pi/4];
+lb = [distance/5,-pi/4]; ub=[distance*2,pi/4];
 
 %% Start with the default options
 options = optimoptions('fmincon');
@@ -42,8 +42,10 @@ ms = MultiStart;
 % IMPORTANT, before this part, a better way to get parameters is
 % to re-calibrate cerrent stereo system
 tr = x(2); % tr should become a real number
+dist=x(1);
 % y, vertical arix is sopposed to be zero
-[X, Z] = meshgrid(-7.5E3:2E2:7.5E3,1E3:1E2:1E4);
+[X, Z] = meshgrid(...
+    linspace(-distance*cos(th/2)-B,distance*cos(th/2)+B,50),linspace(distance/5,distance*3,50));
 D = zeros(size(X));
 % calculate error in every position
 for k = 1:length(X(:))
@@ -83,18 +85,20 @@ color2 = [190,174,212]/256;
 color3 =[253,192,134]/256;
 ylabel('z (world coordinate, mm)')
 xlabel('x (world coordinate, mm)')
+length1 = distance/3/1.5; length2=distance*2;
 % put two cameras on canvas
 scatter(B/2,0,'filled','MarkerFaceColor',color2);scatter(-B/2,0,'filled','MarkerFaceColor',color1);
 % centre lines and bounds for each cameras
-line([-B/2,-B/2+2000*sin(tr/2)],[0,0+2000*cos(tr/2)],'color',color1);
-line([B/2,B/2-2000*sin(tr/2)],[0,0+2000*cos(tr/2)],'color',color2);
-line([-B/2,-B/2+10000*sin(tr/2+th/2)], [0,0+10000*cos(tr/2+th/2)],'color',color1);
-line([B/2,B/2+10000*sin(-tr/2+th/2)],  [0,0+10000*cos(-tr/2+th/2)],'color',color2);
-line([-B/2,-B/2+10000*sin(tr/2-th/2)],  [0,0+10000*cos(tr/2-th/2)],'color',color1);
-line([B/2,B/2+10000*sin(-tr/2-th/2)],   [0,0+10000*cos(-tr/2-th/2)],'color',color2);
+line([-B/2,-B/2+length1*sin(tr/2)],[0,0+length1*cos(tr/2)],'color',color1);
+line([B/2,B/2-length1*sin(tr/2)],[0,0+length1*cos(tr/2)],'color',color2);
+line([-B/2,-B/2+length2*sin(tr/2+th/2)], [0,0+length2*cos(tr/2+th/2)],'color',color1);
+line([B/2,B/2+length2*sin(-tr/2+th/2)],  [0,0+length2*cos(-tr/2+th/2)],'color',color2);
+line([-B/2,-B/2+length2*sin(tr/2-th/2)],  [0,0+length2*cos(tr/2-th/2)],'color',color1);
+line([B/2,B/2+length2*sin(-tr/2-th/2)],   [0,0+length2*cos(-tr/2-th/2)],'color',color2);
 % sharks
-line([-L/2,-L/2],[0,1E4 ],'color',color3,'lineWidth',2);
-line([L/2,L/2],[0,1E4 ],'color',color3,'lineWidth',2);
+line([-L/2,-L/2],[0,length2 ],'color',color3,'lineWidth',2);
+line([L/2,L/2],[0,length2 ],'color',color3,'lineWidth',2);
+line([-L/2,L/2],[dist,dist ],'color',color3,'lineWidth',2);
 % colorbar
 hcb=colorbar;
 set(hcb,'Limits',[-2*threshold,0])

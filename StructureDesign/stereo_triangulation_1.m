@@ -25,14 +25,14 @@ function [xL,xR,XR,flag] = stereo_triangulation_1(X0,om,T,fc_left,cc_left,kc_lef
 % optimized by Frost Xu
 
 %% baseline and relative angle 
-B = sqrt(T'*T); tr = om(2);
+B = sqrt(T'*T); tr = om(2);R = rodrigues(om);
 % load('inPara.mat') cause too much time
 th = 94.4/180*pi;
 xL=[0;0];
 xR=[0,0];
 % transfer functions
 XL = rodrigues(-om/2)*X0+rodrigues(-om/2)*(B*[1; 0; 0 ])/2;
-XR = R*XL + T_vect;
+XR = R*XL + T;
 XR2 = rodrigues(+om/2)*X0+rodrigues(om/2)*(-B*[1; 0; 0 ])/2;
 % disp(XR-XR2)
 flag = 0;
