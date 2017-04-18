@@ -45,7 +45,7 @@ tr = x(2); % tr should become a real number
 dist=x(1);
 % y, vertical arix is sopposed to be zero
 [X, Z] = meshgrid(...
-    linspace(-distance*cos(th/2)-B,distance*cos(th/2)+B,50),linspace(distance/5,distance*3,50));
+    linspace(-distance*cos(th/2)-B,distance*cos(th/2)+B,200),linspace(distance/5,distance*1.5,200));
 D = zeros(size(X));
 % calculate error in every position
 for k = 1:length(X(:))
@@ -65,6 +65,12 @@ for k = 1:length(X(:))
         D(k) = Xdx;
     end
 end
+Tr = linspace(tr-0.5,tr+0.5,500); Value = zeros(size(Tr));
+for k=1:500
+    Value(k) = optfun([x(1),Tr(k)]);
+end
+figure(3)
+plot(Tr,Value)
 % move down the whole distribution to get a better display
 D = D - threshold;
 for k = 1:length(X(:))
