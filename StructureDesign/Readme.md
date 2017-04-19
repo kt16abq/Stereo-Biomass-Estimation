@@ -20,9 +20,9 @@ The following steps tell you how to add these variables in to code.
 
   > function distance = distance
   
-       distance = 800;
+  >     distance = 800;
   
-   end
+  > end
   
   here _distance_ just means the distance from sharks and people. You can change it in to your predicted value, or expected value.
   
