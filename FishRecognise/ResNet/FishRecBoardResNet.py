@@ -143,7 +143,7 @@ new_saver.restore(sess, './ResNet-L50.ckpt')
 # All other steps, run train_step on training data, & add training summaries
 #print(tf.global_variables())
 
-for i in range(10001):
+for i in range(8001):
     offset = (i * batch_size) % (train_labels.shape[0] - batch_size)
     batch_data = train_dataset[offset:(offset + batch_size), :, :, :]
     batch_labels = train_labels[offset:(offset + batch_size), :]
@@ -172,5 +172,8 @@ for i in range(10001):
         else:  # Record a summary
             summary, _ = sess.run([merged, train_step], feed_dict=feed_dict)
             train_writer.add_summary(summary, i)
+saver = tf.train.Saver()
+save_path = saver.save(sess, "/tmp/ResNet/Weight.ckpt")
+print("Model saved in file: %s" % save_path)
 train_writer.close()
 test_writer.close()
