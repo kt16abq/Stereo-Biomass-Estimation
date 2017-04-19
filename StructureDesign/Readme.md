@@ -19,14 +19,10 @@ The following steps tell you how to add these variables in to code.
 1. In the same path of _go.m_, open file _distance.m_ in txt mode. You will find
 
   > function distance = distance
-
-  > % global define
   
-  > % it is the suggest distance from sharks and people 
+       distance = 800;
   
-  >     distance = 800;
-  
-  > end
+   end
   
   here _distance_ just means the distance from sharks and people. You can change it in to your predicted value, or expected value.
   
