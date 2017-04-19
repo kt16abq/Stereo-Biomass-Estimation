@@ -12,16 +12,22 @@ The main file is named _go.m_. Before you run it, you have to check
 4. There is a file named _inPara.mat_. It is the intrinc parameters of GoPro Cameras H4.
 For new cameras, read http://www.vision.caltech.edu/bouguetj/calib_doc/ to learn how to get the parameters.
 
-## setting
+## Setting
 Most of parameters are depend on the scale of sharks the distance from camera to sharks, and the distance between two cameras
 
 The following steps tell you how to add these variables in to code.
 1. In the same path of _go.m_, open file _distance.m_ in txt mode. You will find
+
   > function distance = distance
+
   > % global define
+  
   > % it is the suggest distance from sharks and people 
+  
   >     distance = 800;
+  
   > end
+  
   here _distance_ just means the distance from sharks and people. You can change it in to your predicted value, or expected value.
   
 2. Similarly, open file _L.m_ and _B.m_,
