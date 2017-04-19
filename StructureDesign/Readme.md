@@ -1,7 +1,7 @@
 # Introduction
 This script is established for Marine Science Department. It is also part of my graduate design. 
 
-The default units are *mm* and *rad*.
+The default units are **mm** and **rad**.
 
 # Run code
 ## Environment
@@ -9,6 +9,8 @@ The main file is named _go.m_. Before you run it, you have to check
 1. Your Matlab Version is 2016b or higher
 2. Default path (in MATLAB command) is the same as _go.m_
 3. Manually add the toolbox in to Matlab path
+4. There is a file named _inPara.mat_. It is the intrinc parameters of GoPro Cameras H4.
+For new cameras, read http://www.vision.caltech.edu/bouguetj/calib_doc/ to learn how to get the parameters.
 
 ## setting
 Most of parameters are depend on the scale of sharks the distance from camera to sharks, and the distance between two cameras
