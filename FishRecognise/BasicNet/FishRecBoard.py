@@ -1,4 +1,4 @@
-## method is from Udacity course
+## method is from Stereo camera
 
 from __future__ import print_function
 from __future__ import absolute_import
